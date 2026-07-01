@@ -1,4 +1,4 @@
-package com.tiny.agentplatform.manage.dto.request;
+package com.tiny.agentplatform.agentmanagerebuild.rebuild2Mvc.domain.request;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;

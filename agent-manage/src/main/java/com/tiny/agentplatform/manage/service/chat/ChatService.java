@@ -73,7 +73,7 @@ public class ChatService {
             throw BusinessException.validation(
                     "Agent has no knowledge base bound: " + agent.getId());
         }
-        String primaryKbId = kbIds.get(0);
+        String primaryKbId = kbIds.getFirst();
 
         // 4. 重建对话历史
         List<PythonChatRequest.Message> messages = buildMessages(
@@ -96,7 +96,8 @@ public class ChatService {
                 .build();
 
         // 6. 建立 SseEmitter
-        SseEmitter emitter = new SseEmitter(5 * 60_000L);  // 5min 超时
+        // 5min 超时
+        SseEmitter emitter = new SseEmitter(5 * 60_000L);
         ChatEventCollector collector = new ChatEventCollector(objectMapper);
         long startTime = System.currentTimeMillis();
 
